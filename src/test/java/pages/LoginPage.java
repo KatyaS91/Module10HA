@@ -37,6 +37,14 @@ public class LoginPage extends BaseMailPage {
 		return new BaseMailPage(driver);
 	}
 
+	public BaseMailPage login(String login, String password) {
+		loginInput.sendKeys(login);
+		nextBtn.click();
+		new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(passwordInput)).sendKeys(password);
+		nextBtn.click();
+		return new BaseMailPage(driver);
+	}
+
 	public boolean isNextBntDisplayed() {
 		return new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div [id*= 'Next']"))).isDisplayed();
 	}

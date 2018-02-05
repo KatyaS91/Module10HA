@@ -25,7 +25,7 @@ public class BaseMailPage extends BasePage {
 	@FindBy(xpath = "//div[@role='main']")
 	public WebElement letters;
 
-	BaseMailPage(CustomWebDriver driver) {
+	public BaseMailPage(CustomWebDriver driver) {
 		super(driver);
 	}
 
