@@ -1,4 +1,4 @@
-package stepsdefenition;
+package steps;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -8,7 +8,6 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import pages.BaseMailPage;
 import pages.LoginPage;
-import tests.BaseTestPage;
 import utils.driversingleton.WebDriverSingleton;
 import utils.elementdecorator.CustomWebDriver;
 
@@ -17,7 +16,7 @@ import static utils.driversingleton.WebDriverSingleton.cleanUp;
 /**
  * Created by Katsiaryna_Skarzhyns on 2/5/2018.
  */
-public class LoginTestSteps extends BaseTestPage{
+public class LoginStep {
 
 	public CustomWebDriver driver;
 

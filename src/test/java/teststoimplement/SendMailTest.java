@@ -1,17 +1,12 @@
-package tests.basetest;
+package teststoimplement;
 
-import utils.bo.MailBO;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.*;
-import tests.BaseTestPage;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/10/2018.
  */
-public class SendMailTest extends BaseTestPage {
+public class SendMailTest {
 
-	@Test(description = "Check sending", groups = "p0")
 	public void sent_mail() {
 /*		LoginPage loginPage = new LoginPage(driver);
 		BaseMailPage baseMailPage = loginPage.login();
