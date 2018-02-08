@@ -7,11 +7,11 @@
                 <exclude name="p1"></exclude>
             </run>
         </groups>
-<!--        <packages>
-            <package name="tests.basetest"></package>
-        </packages>-->
-        <classes>
+        <packages>
+            <package name="resourses.features"></package>
+        </packages>
+<!--        <classes>
             <class name="TestRunner"/>
-        </classes>
+        </classes>-->
     </test>
 </suite>

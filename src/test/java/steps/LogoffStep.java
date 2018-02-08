@@ -1,13 +1,10 @@
 package steps;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
-import org.testng.Reporter;
 import pages.BaseMailPage;
 import pages.LoginPage;
 import utils.driversingleton.WebDriverSingleton;
@@ -20,38 +17,29 @@ import static utils.driversingleton.WebDriverSingleton.cleanUp;
  */
 public class LogoffStep {
 
-	public CustomWebDriver driver;
-
-	@Before
-	public void setUp() {
-		driver = WebDriverSingleton.getWebDriverInstance();
-		Reporter.log("Browser started");
-	}
-
-	@After
-	public void quitBrowser() {
-		cleanUp();
-		Reporter.log("Browser closed");
-	}
+	private CustomWebDriver driver = WebDriverSingleton.getWebDriverInstance();
+	private LoginPage loginPage;
+	private BaseMailPage baseMailPage;
 
 	@Given("^user navigates to home page$")
 	public void navigate_to_login_page() {
-		new LoginPage(driver);
+		loginPage = new LoginPage(driver);
 	}
 
 	@When("^user submits login form$")
 	public void userSubmitsLoginForm()  {
-		new LoginPage(driver).login();
+		baseMailPage = loginPage.login();
 	}
 
 	@And("^user singn off$")
 	public void userSingnOff() {
-		new BaseMailPage(driver).logOff();
+		loginPage = baseMailPage.logOff();
 	}
 
 	@Then("^mail start page is displayed$")
 	public void mailStartPageIsDisplayed() {
-		Assert.assertTrue(new LoginPage(driver).isNextBntDisplayed());
-		Assert.assertTrue(new LoginPage(driver).isPasswordInputDisplayed());
+		Assert.assertTrue(loginPage.isNextBntDisplayed());
+		Assert.assertTrue(loginPage.isPasswordInputDisplayed());
+		cleanUp();
 	}
 }

@@ -1,12 +1,9 @@
 package steps;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
-import org.testng.Reporter;
 import pages.BaseMailPage;
 import pages.DraftPage;
 import pages.MailCreationPage;
@@ -22,24 +19,13 @@ import static utils.driversingleton.WebDriverSingleton.cleanUp;
  */
 public class CreatemailStep {
 
-	public CustomWebDriver driver;
+	private CustomWebDriver driver = WebDriverSingleton.getWebDriverInstance();
 	private MailBO mailBO;
-
-	@Before
-	public void setUp() {
-		driver = WebDriverSingleton.getWebDriverInstance();
-		Reporter.log("Browser started");
-	}
-
-	@After
-	public void quitBrowser() {
-		cleanUp();
-		Reporter.log("Browser closed");
-	}
+	private MailCreationPage mailCreationPage;
 
 	@When("^user fill mail form$")
 	public void userFillMailForm() {
-		MailCreationPage mailCreationPage = new BaseMailPage(driver).openCreateMailPage();
+		mailCreationPage = new BaseMailPage(driver).openCreateMailPage();
 		mailBO = new MailBO();
 		mailCreationPage.createMail(mailBO);
 	}
@@ -49,6 +35,7 @@ public class CreatemailStep {
 		DraftPage draftPage = new BaseMailPage(driver).openDrafts();
 		Assert.assertTrue(draftPage.isExpectedDraftSubjectPresent(mailBO.getSubject()), "The draft with subject isn't displayed");
 		Assert.assertTrue(draftPage.isExpectedDraftBodyDisplayed(mailBO.getDescription()), "The draft with body isn't displayed");
+		cleanUp();
 	}
 
 	@And("^user send draft$")
@@ -60,6 +47,8 @@ public class CreatemailStep {
 	@Then("^mail is disappeared from the mail box$")
 	public void mailIsDisappearedFromTheMailBox() {
 		SentPage sentPage = new DraftPage(driver).openSentMails();
-		Assert.assertTrue(sentPage.isExpectedMailPresent(mailBO.getDescription(), mailBO.getSubject(), mailBO.getAddress()), "Expected mailBO doesn't present in the folder");
+		Assert.assertTrue(sentPage.isExpectedMailPresent(mailBO.getDescription(), mailBO.getSubject(), mailBO.getAddress()),
+				"Expected mailBO doesn't present in the folder");
+		cleanUp();
 	}
 }
