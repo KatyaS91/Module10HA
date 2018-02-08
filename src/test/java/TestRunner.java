@@ -10,8 +10,9 @@ import org.testng.annotations.Test;
 @CucumberOptions(strict = true, plugin = {"json:target/cucumber-report.json",
 				"html:target/cucumber-report"}, features = {
 		"classpath:resourses/features/Login.feature",
-		"classpath:resourses/features/Logoff.feature"},
-				glue = {"steps.LoginStep", "steps.LogoffStep"})
+		"classpath:resourses/features/Logoff.feature",
+		"classpath:resourses/features/Createmail.feature"},
+				glue = {"steps.LoginStep", "steps.LogoffStep", "steps.CreatemailStep"})
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 

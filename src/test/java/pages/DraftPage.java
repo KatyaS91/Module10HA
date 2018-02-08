@@ -21,7 +21,7 @@ public class DraftPage extends BaseMailPage {
 	@FindBy(xpath = "//div[@role = 'main']//table//tr")
 	private List<WebElement> drafts;
 
-	DraftPage(CustomWebDriver driver) {
+	public DraftPage(CustomWebDriver driver) {
 		super(driver);
 	}
 
