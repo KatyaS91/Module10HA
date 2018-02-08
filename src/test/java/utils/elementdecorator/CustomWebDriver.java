@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class CustomWebDriver implements WebDriver, JavascriptExecutor {
 
-	protected RemoteWebDriver rwd;
+	private RemoteWebDriver rwd;
 
 	public CustomWebDriver(RemoteWebDriver driver) {
 		rwd = driver;
@@ -42,12 +42,10 @@ public class CustomWebDriver implements WebDriver, JavascriptExecutor {
 
 	public void close() {
 		rwd.close();
-
 	}
 
 	public void quit() {
 		rwd.close();
-
 	}
 
 	public Set<String> getWindowHandles() {
